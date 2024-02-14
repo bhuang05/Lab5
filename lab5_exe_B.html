@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width = device-width, initial-scale = 1.0" />
+    <title>JavaScript String and Variable Exercise</title>
+  </head>
+  <body>
+    <script>
+      let firstName = "Burton";
+      let lastName = "Jong";
+      let age = 19;
+      // Full name concatentation
+      let fullName = firstName + " " + lastName;
+      console.log(fullName);
+
+      // Birth year calculation
+      let currentYear = new Date().getFullYear();
+      let birthYear = currentYear - age;
+      console.log(birthYear);
+
+      // Converting full name to upper case, logging length
+      console.log(fullName.length);
+      console.log(fullName.toUpperCase());
+
+      // Template literals
+      console.log(
+        `Hello, my name is ${fullName} and I am ${age} years old. I was born in ${birthYear}.`
+      );
+
+      // Conditional Operator
+      let canVote = age > 18 ? true : false;
+      console.log(`I am eligible to vote: ${canVote}`);
+    </script>
+  </body>
+</html>
