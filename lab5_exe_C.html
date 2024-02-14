@@ -253,7 +253,12 @@ Description : DOM Elements.
 
 
 				// Task 8: Change the submit button text upon clicking and make it disabled
-				
+				function changedisable() {
+					document.querySelector('input[type=button]').value='Submitted';
+					document.querySelector('input[type=button]').disabled = true;
+				}
+				var submit = document.querySelector('input[type=button]');
+				submit.onclick = changedisable;
 
 
 
