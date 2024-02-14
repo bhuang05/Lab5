@@ -2,8 +2,8 @@
 =========================================================
 Name        : lab5_exe_C.html
 Assignment  : Lab 5, Exercise C
-Author(s)   : Mahdi Ansari, William Arthur Philip Louis
-Submission  : May 21, 2030
+Author(s)   : Braden Huang, Burton Jong
+Submission  : February 14th, 2024
 Description : DOM Elements.
 =========================================================
 -->
@@ -206,34 +206,68 @@ Description : DOM Elements.
 		<script>
 			document.addEventListener('DOMContentLoaded', function afterRender() {
 				// Task 1: Set the text content of all elements with the class 'companyName' and remove their border
+				var elements = document.getElementsByClassName('companyName');
+				for (var i = 0; i < elements.length; i++){
+					element = elements[i];
+					element.textContent = 'Mahdi';
+					element.style.border = 'none';
+				}
 
 
 				// Task 2: Change the background color of the navigation bar
-				
+				var navbar = document.querySelector('nav');
+				navbar.style.backgroundColor = 'pink';
 
 				// Task 3: Hide the section titled 'What is full-stack?'
+				var section = document.querySelector("article");
+				section.style.opacity = '0%';
 
 
 				// Task 4: Create a new <p> element and append it to the 'About Us' section
-
+				var newP = document.createElement('p');
+				newP.textContent = 'This is a new paragraph';
+				newP.style.color = 'red';
+				var about = document.querySelector("section");
+				about.appendChild(newP);
 
 				// Task 5: Add placeholders to input elements based on their corresponding label IDs
 
 
+
+
 				// Task 6: Set the src attribute of the image
+				var image = document.querySelector('img');
+					image.setAttribute('src', './images/example.svg')
+
 
 
 				// Task 7: Add a new item in the navigation menu
+				var navbar = document.querySelector('nav ul');
+				var newitem = document.createElement('li');
+				var newlink = document.createElement('a')
+				newlink.href = '#'
+				newlink.textContent = 'Blog'
+				newitem.appendChild(newlink)
+				navbar.appendChild(newitem)
+					
 
 
 				// Task 8: Change the submit button text upon clicking and make it disabled
+				
+
 
 
 				// Task 9: Change the text color of each item in the 'Related Links' to green
-
+				var links = document.querySelectorAll('aside a');
+    				links.forEach(function(link) {
+        				link.style.color = 'green';
+    				});
 
 				// Task 10: Add a red solid border to the footer
+				var foot = document.querySelector('footer');
+				foot.style.border = 'solid red';
 			});
+
 		</script>
 	</body>
 </html>
