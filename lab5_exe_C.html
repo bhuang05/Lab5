@@ -231,8 +231,12 @@ Description : DOM Elements.
 				about.appendChild(newP);
 
 				// Task 5: Add placeholders to input elements based on their corresponding label IDs
-
-
+				var labels = document.querySelectorAll('label');
+				labels.forEach(function(label) {
+					var inputId = label.getAttribute('for');
+					var inputElement = document.getElementById(inputId);
+					inputElement.setAttribute('placeholder', label.textContent);
+				});
 
 
 				// Task 6: Set the src attribute of the image
@@ -253,12 +257,13 @@ Description : DOM Elements.
 
 
 				// Task 8: Change the submit button text upon clicking and make it disabled
-				function changedisable() {
-					document.querySelector('input[type=button]').value='Submitted';
-					document.querySelector('input[type=button]').disabled = true;
+				function changeddisable() {
+					var submit = document.querySelector('input[type=button]')
+					submit.setAttribute('value', "Submitted");
+					submit.setAttribute('disabled', 'true');
 				}
 				var submit = document.querySelector('input[type=button]');
-				submit.onclick = changedisable;
+				submit.onclick = changeddisable;
 
 
 
