@@ -11,6 +11,9 @@ function generateMatrices() {
     document.getElementById("matrix2Rows").value,
     document.getElementById("matrix2Cols").value
   );
+  // When generating new matrices you would want your reuslt to also dissapear
+  let container = document.getElementById("matrix3");
+  container.innerHTML = "";
 }
 
 const createMatrix = (title, containerId, rows, cols) => {
@@ -59,7 +62,7 @@ const showResult = (title, containerId, rows, cols, dataArray) => {
   container.appendChild(table);
 };
 
-const showResult2D = (title, containerId, dataArray) => {
+const showResult2D = (title, containerId, rows, cols, dataArray) => {
   // dataArray is a 2D array
   // complete this function based on the showResult function
 
@@ -94,8 +97,6 @@ function performOperation(operation) {
   console.log("1st Matrix", matrix1);
   console.log("2nd Matrix", matrix2);
   console.log("Operation", operation);
-  rows = matrix1.length;
-  cols = matrix1[0].length;
 
   if (operation === "add") {
     result = addMatrices(matrix1, matrix2);
@@ -104,10 +105,14 @@ function performOperation(operation) {
   } else if (operation === "multiply") {
     result = multiplyMatrices(matrix1, matrix2);
   }
+
+  console.log(result.length, result[0].length);
+  rows = result.length;
+  cols = result[0].length;
   // Call your matrix calculation functions here
   // For example: if (operation === 'add') { addMatrices(matrix1, matrix2); }
   // prints suitable messages for impossible situation
-  showResult2D("The Result", "matrix3", result); // use suitable function for printing results
+  showResult2D("The Result", "matrix3", rows, cols, result); // use suitable function for printing results
 }
 
 const getMatrixData1D = function (matrixId) {
