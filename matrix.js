@@ -35,31 +35,25 @@ const createMatrix = (title, containerId, rows, cols) => {
 };
 
 const showResult = (title, containerId, rows, cols, dataArray) => {
-  if (typeof dataArray === "string") {
-    let container = document.getElementById(containerId);
-    container.innerHTML = dataArray;
-  } else {
-    let container = document.getElementById(containerId);
-    container.innerHTML = ""; // Clear previous content
-    let table = document.createElement("table");
+  let container = document.getElementById(containerId);
+  container.innerHTML = ""; // Clear previous content
+  let table = document.createElement("table");
 
-    for (let i = 0; i < rows; i++) {
-      let tr = document.createElement("tr");
-      for (let j = 0; j < cols; j++) {
-        let td = document.createElement("td");
-        let span = document.createElement("span");
-        // Calculate the index in the dataArray based on current row and column
-        let index = i * cols + j;
-        if (index < dataArray.length) {
-          span.innerHTML = dataArray[index];
-        }
-        td.appendChild(span);
-        tr.appendChild(td);
+  for (let i = 0; i < rows; i++) {
+    let tr = document.createElement("tr");
+    for (let j = 0; j < cols; j++) {
+      let td = document.createElement("td");
+      let span = document.createElement("span");
+      // Calculate the index in the dataArray based on current row and column
+      let index = i * cols + j;
+      if (index < dataArray.length) {
+        span.innerHTML = dataArray[index];
       }
-      table.appendChild(tr);
+      td.appendChild(span);
+      tr.appendChild(td);
     }
+    table.appendChild(tr);
   }
-
   let caption = table.createCaption();
   caption.textContent = title;
   container.appendChild(table);
@@ -68,6 +62,30 @@ const showResult = (title, containerId, rows, cols, dataArray) => {
 const showResult2D = (title, containerId, dataArray) => {
   // dataArray is a 2D array
   // complete this function based on the showResult function
+
+  if (typeof dataArray === "string") {
+    let container = document.getElementById(containerId);
+    container.innerHTML = dataArray;
+  } else {
+    let container = document.getElementById(containerId);
+    container.innerHTML = ""; // Clear previous content
+    let table = document.createElement("table");
+    for (let i = 0; i < rows; i++) {
+      let tr = document.createElement("tr");
+      for (let j = 0; j < cols; j++) {
+        let td = document.createElement("td");
+        let input = document.createElement("input");
+        input.type = "number";
+        input.value = dataArray[i][j]; // Random value between 0 and 99
+        td.appendChild(input);
+        tr.appendChild(td);
+      }
+      table.appendChild(tr);
+    }
+    let caption = table.createCaption();
+    caption.textContent = title;
+    container.appendChild(table);
+  }
 };
 
 function performOperation(operation) {
@@ -78,8 +96,7 @@ function performOperation(operation) {
   console.log("Operation", operation);
   rows = matrix1.length;
   cols = matrix1[0].length;
-  // Just a test result
-  let result = [1, 2, 3, 4, 5, 6, 7, 8];
+
   if (operation === "add") {
     result = addMatrices(matrix1, matrix2);
   } else if (operation === "subtract") {
@@ -90,7 +107,7 @@ function performOperation(operation) {
   // Call your matrix calculation functions here
   // For example: if (operation === 'add') { addMatrices(matrix1, matrix2); }
   // prints suitable messages for impossible situation
-  showResult("The Result", "matrix3", rows, cols, result); // use suitable function for printing results
+  showResult2D("The Result", "matrix3", result); // use suitable function for printing results
 }
 
 const getMatrixData1D = function (matrixId) {
@@ -152,7 +169,56 @@ function addMatrices(matrix1, matrix2) {
 }
 const subtractMatrices = function (matrix1, matrix2) {
   // provide the code
+  m1rows = matrix1.length;
+  m1cols = matrix1[0].length;
+  m2rows = matrix2.length;
+  m2cols = matrix2[0].length;
+  if (m1rows !== m2rows || m1cols !== m2cols) {
+    console.log("Matrices must have the same dimensions for addition.");
+    return "Matrices must have the same dimensions for addition.";
+  }
+
+  let result = [];
+  for (let i = 0; i < matrix1.length; i++) {
+    let row = [];
+    for (let j = 0; j < matrix1[i].length; j++) {
+      row.push(matrix1[i][j] - matrix2[i][j]);
+    }
+    result.push(row);
+  }
+
+  console.log(result);
+
+  return result;
 };
 const multiplyMatrices = (matrix1, matrix2) => {
   // provide the code
+  m1rows = matrix1.length;
+  m1cols = matrix1[0].length;
+  m2rows = matrix2.length;
+  m2cols = matrix2[0].length;
+
+  if (m1cols !== m2rows) {
+    console.log(
+      "The number of columns in the first matrix must be equal to the number of rows in the second matrix for multiplication."
+    );
+    return "The number of columns in the first matrix must be equal to the number of rows in the second matrix for multiplication.";
+  }
+
+  let result = [];
+  for (let i = 0; i < m1rows; i++) {
+    let row = [];
+    for (let j = 0; j < m2cols; j++) {
+      let sum = 0;
+      for (let k = 0; k < m1cols; k++) {
+        sum += matrix1[i][k] * matrix2[k][j];
+      }
+      row.push(sum);
+    }
+    result.push(row);
+  }
+
+  console.log(result);
+
+  return result;
 };
