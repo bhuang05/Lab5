@@ -63,15 +63,12 @@ const showResult = (title, containerId, rows, cols, dataArray) => {
 };
 
 const showResult2D = (title, containerId, rows, cols, dataArray) => {
-  // dataArray is a 2D array
-  // complete this function based on the showResult function
-
   if (typeof dataArray === "string") {
     let container = document.getElementById(containerId);
     container.innerHTML = dataArray;
   } else {
     let container = document.getElementById(containerId);
-    container.innerHTML = ""; // Clear previous content
+    container.innerHTML = "";
     let table = document.createElement("table");
     for (let i = 0; i < rows; i++) {
       let tr = document.createElement("tr");
@@ -106,13 +103,10 @@ function performOperation(operation) {
     result = multiplyMatrices(matrix1, matrix2);
   }
 
-  console.log(result.length, result[0].length);
   rows = result.length;
   cols = result[0].length;
-  // Call your matrix calculation functions here
-  // For example: if (operation === 'add') { addMatrices(matrix1, matrix2); }
-  // prints suitable messages for impossible situation
-  showResult2D("The Result", "matrix3", rows, cols, result); // use suitable function for printing results
+
+  showResult2D("The Result", "matrix3", rows, cols, result);
 }
 
 const getMatrixData1D = function (matrixId) {
@@ -149,7 +143,6 @@ const getMatrixData2D = function (matrixId) {
 // Add your matrix calculation functions here
 // The functions must check the posibility of calculation too.
 function addMatrices(matrix1, matrix2) {
-  // provide the code
   m1rows = matrix1.length;
   m1cols = matrix1[0].length;
   m2rows = matrix2.length;
@@ -173,7 +166,6 @@ function addMatrices(matrix1, matrix2) {
   return result;
 }
 const subtractMatrices = function (matrix1, matrix2) {
-  // provide the code
   m1rows = matrix1.length;
   m1cols = matrix1[0].length;
   m2rows = matrix2.length;
@@ -197,7 +189,6 @@ const subtractMatrices = function (matrix1, matrix2) {
   return result;
 };
 const multiplyMatrices = (matrix1, matrix2) => {
-  // provide the code
   m1rows = matrix1.length;
   m1cols = matrix1[0].length;
   m2rows = matrix2.length;
