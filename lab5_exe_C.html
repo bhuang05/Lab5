@@ -209,7 +209,7 @@ Description : DOM Elements.
 				var elements = document.getElementsByClassName('companyName');
 				for (var i = 0; i < elements.length; i++){
 					element = elements[i];
-					element.textContent = 'Mahdi';
+					element.textContent = 'Your Name';
 					element.style.border = 'none';
 				}
 
@@ -249,10 +249,10 @@ Description : DOM Elements.
 				var navbar = document.querySelector('nav ul');
 				var newitem = document.createElement('li');
 				var newlink = document.createElement('a')
-				newlink.href = '#'
-				newlink.textContent = 'Blog'
-				newitem.appendChild(newlink)
-				navbar.appendChild(newitem)
+				newlink.setAttribute('href', '#');
+				newlink.textContent = 'Blog';
+				newitem.appendChild(newlink);
+				navbar.appendChild(newitem);
 					
 
 
@@ -275,7 +275,7 @@ Description : DOM Elements.
 
 				// Task 10: Add a red solid border to the footer
 				var foot = document.querySelector('footer');
-				foot.style.border = 'solid red';
+				foot.style.border = '2px solid red';
 			});
 
 		</script>
